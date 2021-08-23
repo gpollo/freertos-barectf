@@ -1,0 +1,20 @@
+--- !<tag:barectf.org,2020/3/config>
+trace:
+  type:
+    $include:
+      - stdint.yaml
+      - stdmisc.yaml
+      - freertos-types.yaml
+
+    native-byte-order: little-endian
+    clock-types:
+      hrclock:
+        $c-type: uint32_t
+        frequency: 1000000 # 1 MHz
+        origin-is-unix-epoch: false
+
+    data-stream-types:
+      freertos:
+        $include:
+          - freertos-events.yaml
+        $default-clock-type-name: hrclock

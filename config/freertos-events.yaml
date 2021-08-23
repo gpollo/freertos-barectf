@@ -1,0 +1,179 @@
+event-record-types:
+  # traceSTART()
+  start: {}
+
+  # traceEND()
+  end: {}
+
+  # traceTASK_SWITCHED_IN()
+  task_switched_in:
+    payload-field-type:
+      class: structure
+      members:
+        - identifier: pointer
+
+  # traceINCREASE_TICK_COUNT(xTicksToJump)
+  # traceLOW_POWER_IDLE_BEGIN()
+  # traceLOW_POWER_IDLE_END()
+
+  # traceTASK_SWITCHED_OUT()
+  task_switched_out:
+    payload-field-type:
+      class: structure
+      members:
+        - identifier: pointer
+        - top_of_stack: pointer
+
+  # define traceTASK_PRIORITY_INHERIT( pxTCBOfMutexHolder, uxInheritedPriority )
+  # define traceTASK_PRIORITY_DISINHERIT( pxTCBOfMutexHolder, uxOriginalPriority )
+  # define traceBLOCKING_ON_QUEUE_RECEIVE( pxQueue )
+  # define traceBLOCKING_ON_QUEUE_PEEK( pxQueue )
+  # define traceBLOCKING_ON_QUEUE_SEND( pxQueue )
+
+  # traceMOVED_TASK_TO_READY_STATE(pxTCB)
+  moved_task_to_ready_state:
+    payload-field-type:
+      class: structure
+      members:
+        - identifier: pointer
+
+  # define tracePOST_MOVED_TASK_TO_READY_STATE( pxTCB )
+  # define traceQUEUE_CREATE( pxNewQueue )
+  # define traceQUEUE_CREATE_FAILED( ucQueueType )
+  # define traceCREATE_MUTEX( pxNewQueue )
+  # define traceCREATE_MUTEX_FAILED()
+  # define traceGIVE_MUTEX_RECURSIVE( pxMutex )
+  # define traceGIVE_MUTEX_RECURSIVE_FAILED( pxMutex )
+  # define traceTAKE_MUTEX_RECURSIVE( pxMutex )
+  # define traceTAKE_MUTEX_RECURSIVE_FAILED( pxMutex )
+  # define traceCREATE_COUNTING_SEMAPHORE()
+  # define traceCREATE_COUNTING_SEMAPHORE_FAILED()
+  # define traceQUEUE_SET_SEND    traceQUEUE_SEND
+  # define traceQUEUE_SEND( pxQueue )
+  # define traceQUEUE_SEND_FAILED( pxQueue )
+  # define traceQUEUE_RECEIVE( pxQueue )
+  # define traceQUEUE_PEEK( pxQueue )
+  # define traceQUEUE_PEEK_FAILED( pxQueue )
+  # define traceQUEUE_PEEK_FROM_ISR( pxQueue )
+  # define traceQUEUE_RECEIVE_FAILED( pxQueue )
+  # define traceQUEUE_SEND_FROM_ISR( pxQueue )
+  # define traceQUEUE_SEND_FROM_ISR_FAILED( pxQueue )
+  # define traceQUEUE_RECEIVE_FROM_ISR( pxQueue )
+  # define traceQUEUE_RECEIVE_FROM_ISR_FAILED( pxQueue )
+  # define traceQUEUE_PEEK_FROM_ISR_FAILED( pxQueue )
+  # define traceQUEUE_DELETE( pxQueue )
+
+  # traceTASK_CREATE(pxNewTCB)
+  task_create:
+    payload-field-type:
+      class: structure
+      members:
+        - name: string
+        - identifier: pointer
+        - priority: ubase_type
+        - stack_start: pointer
+        - stack_end: pointer
+
+  # define traceTASK_CREATE_FAILED()
+  # define traceTASK_DELETE( pxTaskToDelete )
+
+  # traceTASK_DELAY_UNTIL(xTimeToWake)
+  task_delay_until:
+    payload-field-type:
+      class: structure
+      members:
+        - previous_wake_time: tick_type
+        - time_increment: tick_type
+        - time_to_wake: tick_type
+
+  # traceTASK_DELAY()
+  task_delay:
+    payload-field-type:
+      class: structure
+      members:
+        - tick_count: tick_type
+
+  # define traceTASK_PRIORITY_SET( pxTask, uxNewPriority )
+
+  # traceTASK_SUSPEND(pxTCB)
+  task_suspend:
+    payload-field-type:
+      class: structure
+      members:
+        - identifier: pointer
+
+  # traceTASK_RESUME(pxTCB)
+  task_resume:
+    payload-field-type:
+      class: structure
+      members:
+        - identifier: pointer
+
+  # traceTASK_RESUME_FROM_ISR(pxTCB)
+  task_resume_from_isr:
+    payload-field-type:
+      class: structure
+      members:
+        - identifier: pointer
+
+  # traceTASK_INCREMENT_TICK(xTickCount)
+  task_increment_tick:
+    payload-field-type:
+      class: structure
+      members:
+        - tick_count: tick_type
+
+  # define traceTIMER_CREATE( pxNewTimer )
+  # define traceTIMER_CREATE_FAILED()
+  # define traceTIMER_COMMAND_SEND( xTimer, xMessageID, xMessageValueValue, xReturn )
+  # define traceTIMER_EXPIRED( pxTimer )
+  # define traceTIMER_COMMAND_RECEIVED( pxTimer, xMessageID, xMessageValue )
+  # define traceMALLOC( pvAddress, uiSize )
+  # define traceFREE( pvAddress, uiSize )
+  # define traceEVENT_GROUP_CREATE( xEventGroup )
+  # define traceEVENT_GROUP_CREATE_FAILED()
+  # define traceEVENT_GROUP_SYNC_BLOCK( xEventGroup, uxBitsToSet, uxBitsToWaitFor )
+  # define traceEVENT_GROUP_SYNC_END( xEventGroup, uxBitsToSet, uxBitsToWaitFor, xTimeoutOccurred )    ( void ) xTimeoutOccurred
+  # define traceEVENT_GROUP_WAIT_BITS_BLOCK( xEventGroup, uxBitsToWaitFor )
+  # define traceEVENT_GROUP_WAIT_BITS_END( xEventGroup, uxBitsToWaitFor, xTimeoutOccurred )    ( void ) xTimeoutOccurred
+  # define traceEVENT_GROUP_CLEAR_BITS( xEventGroup, uxBitsToClear )
+  # define traceEVENT_GROUP_CLEAR_BITS_FROM_ISR( xEventGroup, uxBitsToClear )
+  # define traceEVENT_GROUP_SET_BITS( xEventGroup, uxBitsToSet )
+  # define traceEVENT_GROUP_SET_BITS_FROM_ISR( xEventGroup, uxBitsToSet )
+  # define traceEVENT_GROUP_DELETE( xEventGroup )
+  # define tracePEND_FUNC_CALL( xFunctionToPend, pvParameter1, ulParameter2, ret )
+  # define tracePEND_FUNC_CALL_FROM_ISR( xFunctionToPend, pvParameter1, ulParameter2, ret )
+  # define traceQUEUE_REGISTRY_ADD( xQueue, pcQueueName )
+
+  # define traceTASK_NOTIFY_TAKE_BLOCK(uxIndexToWait)
+  task_notify_take_block:
+    payload-field-type:
+      class: structure
+      members:
+        - index_to_wait: ubase_type
+
+  # define traceTASK_NOTIFY_TAKE(uxIndexToWait)
+  task_notify_take:
+    payload-field-type:
+      class: structure
+      members:
+        - index_to_wait: ubase_type
+
+  # define traceTASK_NOTIFY_WAIT_BLOCK( uxIndexToWait )
+  # define traceTASK_NOTIFY_WAIT( uxIndexToWait )
+  # define traceTASK_NOTIFY( uxIndexToNotify )
+  # define traceTASK_NOTIFY_FROM_ISR( uxIndexToNotify )
+  # define traceTASK_NOTIFY_GIVE_FROM_ISR( uxIndexToNotify )
+  # define traceSTREAM_BUFFER_CREATE_FAILED( xIsMessageBuffer )
+  # define traceSTREAM_BUFFER_CREATE_STATIC_FAILED( xReturn, xIsMessageBuffer )
+  # define traceSTREAM_BUFFER_CREATE( pxStreamBuffer, xIsMessageBuffer )
+  # define traceSTREAM_BUFFER_DELETE( xStreamBuffer )
+  # define traceSTREAM_BUFFER_RESET( xStreamBuffer )
+  # define traceBLOCKING_ON_STREAM_BUFFER_SEND( xStreamBuffer )
+  # define traceSTREAM_BUFFER_SEND( xStreamBuffer, xBytesSent )
+  # define traceSTREAM_BUFFER_SEND_FAILED( xStreamBuffer )
+  # define traceSTREAM_BUFFER_SEND_FROM_ISR( xStreamBuffer, xBytesSent )
+  # define traceBLOCKING_ON_STREAM_BUFFER_RECEIVE( xStreamBuffer )
+  # define traceSTREAM_BUFFER_RECEIVE( xStreamBuffer, xReceivedLength )
+  # define traceSTREAM_BUFFER_RECEIVE_FAILED( xStreamBuffer )
+  # define traceSTREAM_BUFFER_RECEIVE_FROM_ISR( xStreamBuffer, xReceivedLength )

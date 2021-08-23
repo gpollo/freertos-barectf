@@ -1,0 +1,6 @@
+$field-type-aliases:
+  pointer: uint32
+  base_type: sint32
+  ubase_type: uint32
+  tick_type: uint32
+  stack_type: uint32
